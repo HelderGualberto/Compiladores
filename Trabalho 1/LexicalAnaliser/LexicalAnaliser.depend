@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1459388813 source:c:\users\helder\documents\c\lexicalanaliser\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1459725625 source:c:\users\helder\documents\compiladores\trabalho 1\lexicalanaliser\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+

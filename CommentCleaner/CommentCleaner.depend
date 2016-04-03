@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1456677007 source:c:\users\helder\documents\c\commentcleaner\main.c
+	<stdio.h>
+	<stdlib.h>
+

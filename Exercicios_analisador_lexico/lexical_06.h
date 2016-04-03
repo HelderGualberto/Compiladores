@@ -1,0 +1,6 @@
+#ifndef LEXICAL_06_H_INCLUDED
+#define LEXICAL_06_H_INCLUDED
+
+int lexical_06(FILE*);
+
+#endif // LEXICAL_06_H_INCLUDED
