@@ -5,9 +5,10 @@
 	<string.h>
 	<ctype.h>
 
-1459725625 source:c:\users\helder\documents\compiladores\trabalho 1\lexicalanaliser\main.c
+1460209905 source:c:\users\helder\documents\compiladores\trabalho 1\lexicalanaliser\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
+	<math.h>
 
