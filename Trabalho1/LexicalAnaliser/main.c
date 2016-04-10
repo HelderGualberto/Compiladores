@@ -168,6 +168,7 @@ int main( int narg, char ** args)
             printf("%s",args[1]);
             caminho_entrada = args[1];
         }
+
         arquivo_entrada = fopen(caminho_entrada,"r");
         if(arquivo_entrada == NULL){
             printf("Caminho nao encontrado!\n");
@@ -228,10 +229,11 @@ int main( int narg, char ** args)
             printf("[%d]reconhecido CONSTANTE_STRING - atributo: %s\n", linha,info_atomo.atributo.constante);\
         else if(info_atomo.atomo == CONSTANTE_CHAR)
             printf("[%d]reconhecido CONSTANTE_CHAR - atributo: %c\n", linha,info_atomo.atributo.constante_char);
-        else if (info_atomo.atomo == CONSTANTE_INTEIRO){
-            printf("[%d]reconhecido CONSTANTE_INTEIRO - atributo: %s\n", linha,info_atomo.atributo.str_id);
+        else if (info_atomo.atomo == CONSTANTE_INTEIRO)
+            printf("[%d]reconhecido CONSTANTE_INTEIRO - atributo: %d\n", linha,info_atomo.atributo.constante_inteiro);
+        else if (info_atomo.atomo == CONSTANTE_FLUTUANTE)
+            printf("[%d]reconhecido CONSTANTE_FLUTUANTE - atributo: %f\n", linha,info_atomo.atributo.valor_real);
 
-        }
     }while( info_atomo.atomo != EOS && info_atomo.atomo != ERRO );
     return 0;
 }
@@ -260,7 +262,7 @@ NUM:
         buffer++;
         goto NUM;
     }
-    if (*buffer == '.'){
+    if (*buffer == ','){
         buffer++;
         goto NUM_REAL;
     }
@@ -288,7 +290,7 @@ NUM_REAL:
     }
 
 CONSTANTE_INTEIRO:
-    if (*buffer == '+' || isdigit(*buffer)){
+    if (*buffer == '+' || isdigit(*buffer) || *buffer == '-'){
         buffer++;
         goto CONSTANTE_INTEIRO;
 
@@ -571,6 +573,8 @@ TInfoAtomo AnaLex(void)
             while(*a != 0){
                 if(*a == ','){
                     a++;
+                    base[x] = '.';
+                    x++;
                     info_atomo.atomo = CONSTANTE_FLUTUANTE;
                 }
                 if (*a == '^'){
@@ -583,10 +587,6 @@ TInfoAtomo AnaLex(void)
             }
             x = 0;
             while(*a != 0){
-                if (*a == '+'){
-                    a++;
-                    continue;
-                }
                 expoente[x] = *a;
                 x++;
                 a++;
