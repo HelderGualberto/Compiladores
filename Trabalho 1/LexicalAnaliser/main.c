@@ -569,7 +569,7 @@ TInfoAtomo AnaLex(void)
             char expoente[16];
             int x = 0;
             while(*a != 0){
-                if(*a == '.'){
+                if(*a == ','){
                     a++;
                     info_atomo.atomo = CONSTANTE_FLUTUANTE;
                 }
