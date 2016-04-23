@@ -1,128 +1,26 @@
+/**
+    PROGRAMA DESENVOLVIDO PELOS AUTORES HELDER RODRIGUES E JOAO SISANOSKI
+    DO CURSO DE ENGENHARIA DA COMPUTACAO
+**/
+
+/*
+    O CODIGO A SEGUIR E REFERENTE A IMPLEMENTACAO DE UM ANALISADOR LEXICO
+    ONDE A FUNCAO AnaLex TEM A FUNCAO PRINCIPAL DE IDENTIFICAR OS ATMOS DA
+    LINGUAGEM DEFINIDA.
+    POSTERIORMENTE A FUNCAO SERA UTILIZADA COMO ENTRADA PARA UM ANALISADOR SINTATICO.
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include <math.h>
-char palavras_reservadas[24][17] = {
-    "ALGORITMO",
-    "CARACTERE",
-    "DIV",
-    "E",
-    "ENQUANTO",
-    "ENTAO",
-    "FACA",
-    "FALSO",
-    "FIM",
-    "FUNCAO",
-    "INICIO",
-    "INTEIRO",
-    "LOGICO",
-    "MOD",
-    "NADA",
-    "NAO",
-    "OU",
-    "PROCEDIMENTO",
-    "REAL",
-    "REF",
-    "SE",
-    "SENAO",
-    "VARIAVEIS",
-    "VETOR"
-};
+#include "definitions.h"
 
-// Mensagens do compilador indexadas pelos atomos (tokens)
-char *msg_atomo[]={
-    "Erro Lexico",
-    "Identificador",
-    "Numero Inteiro",
-    "Numero Real",
-    "Fim de Buffer",
-    "Operador relacional",
-    "Comentario 1",
-    "Comentario 2",
-    "Subtracao",
-    "Adicao",
-    "Multiplicacao",
-    "Abre Parenteses",
-    "Atribuicao",
-    "Fecha parenteses",
-    "Ponto e virgula",
-    "Ponto ponto",
-    "Abre colchetes",
-    "Fecha colchetes",
-    "Constante inteiro",
-    "Constante string",
-    "Constante char",
-    "Constante flutuante"
-};
-// Mensagens para referenciar o operador relacional identificado
-char *msg_op_relacional[]={
-    "ME",
-    "MEI",
-    "IG",
-    "DI",
-    "MA",
-    "MAI"
-};
-
-// Definicao de uma estrutura enumeracao para as constantes dos atomos (Tokens)
-typedef enum{
-    ERRO,     // erro lexico
-    ID,       // identificador
-    NUM_INT,  // numero inteiro
-    NUM_REAL, // numero real
-    EOS, // fim de string
-    OP_RELACIONAL,
-    COMENTARIO_1,
-    COMENTARIO_2,
-    SUBTRACAO,
-    ADICAO,
-    MULTIPLICACAO,
-    ABRE_PAR,
-    ATRIBUICAO,
-    FECHA_PAR,
-    PONTO_VIRGULA,
-    PONTO_PONTO,
-    ABRE_COLCHETES,
-    FECHA_COLCHETES,
-    CONSTANTE_INTEIRO,
-    CONSTANTE_STRING,
-    CONSTANTE_CHAR,
-    CONSTANTE_FLUTUANTE
-}TAtomo;
-
-//Definicao de um enum para referenciar os operadores relacionais
-typedef enum{
-    ME,
-    MEI,
-    IG,
-    DI,
-    MA,
-    MAI
-}AtrOpRelacional;
-
-
-
-// definicao de uma estrutura union para os atributos do atomo (Tokens)
-typedef union
-{
-    char str_id[17];//16+1 para guardar o \0
-    int valor_inteiro;
-    float valor_real;
-    AtrOpRelacional op_relac;
-    char constante[32];
-    char constante_char;
-    int constante_inteiro;
-}TAtributo;
-
-// definiÁ„o de uma estrutura para retornar as informaÁıes do atomo
-// Atomo (token), numero da linha e atributo
-typedef struct{
-    TAtomo atomo; //Constante representando o ·tomo
-    int linha; //N˙mero da linha onde o ·tomo foi encontrado
-    TAtributo atributo; // atributos para os ·tomos
-}TInfoAtomo;
-
+/*
+    Todas as definicoes, unioes e estruturas estao localizadas no arquivo definitions.h
+    As mensagens de erro tambem pode ser encontradas no mesmo arquivo
+*/
 
 // funcao principal do analisador lexico, retorna o atomo reconhecido
 // com seus atributos
@@ -155,7 +53,6 @@ void read_file(FILE* input){
     }
     buffer[fsize - n_carbit] = 0;
 }
-
 
 
 int main( int narg, char ** args)
@@ -201,6 +98,8 @@ int main( int narg, char ** args)
             printf("[%d]%s\n",info_atomo.linha,msg_atomo[info_atomo.atomo]);
         else if(info_atomo.atomo == OP_RELACIONAL)
             printf("[%d]reconhecido Operador relacional - atributo: %s\n", linha,msg_op_relacional[info_atomo.atributo.op_relac]);
+        else if (info_atomo.atomo >= ALGORITMO && info_atomo.atomo <= VETOR)
+            printf("[%d]reconhecido %s\n",linha,msg_atomo[info_atomo.atomo]);
         else if (info_atomo.atomo == ADICAO)
             printf("[%d]reconhecido %s\n",linha,msg_atomo[info_atomo.atomo]);
         else if (info_atomo.atomo == SUBTRACAO)
@@ -231,8 +130,8 @@ int main( int narg, char ** args)
             printf("[%d]reconhecido CONSTANTE_CHAR - atributo: %c\n", linha,info_atomo.atributo.constante_char);
         else if (info_atomo.atomo == CONSTANTE_INTEIRO)
             printf("[%d]reconhecido CONSTANTE_INTEIRO - atributo: %d\n", linha,info_atomo.atributo.constante_inteiro);
-        else if (info_atomo.atomo == CONSTANTE_FLUTUANTE)
-            printf("[%d]reconhecido CONSTANTE_FLUTUANTE - atributo: %f\n", linha,info_atomo.atributo.valor_real);
+        else if (info_atomo.atomo == CONSTANTE_REAL)
+            printf("[%d]reconhecido CONSTANTE_REAL - atributo: %f\n", linha,info_atomo.atributo.valor_real);
 
     }while( info_atomo.atomo != EOS && info_atomo.atomo != ERRO );
     return 0;
@@ -255,6 +154,7 @@ R_ID:
 /*
  Reconhece um NUMERO INTEIRO E NUMERO REAL
  */
+
 TAtomo reconhece_num(void)
 {
 NUM:
@@ -290,6 +190,7 @@ NUM_REAL:
     }
 
 CONSTANTE_INTEIRO:
+
     if (*buffer == '+' || isdigit(*buffer) || *buffer == '-'){
         buffer++;
         goto CONSTANTE_INTEIRO;
@@ -332,7 +233,7 @@ int cmp_string(char *s1,char* s2){
     return 0;
 }
 
-//Funcao que verifica se o atomo detectado È uma plavra reservada ou nao
+//Funcao que verifica se o atomo detectado � uma plavra reservada ou nao
 int verifica_palavra_reservada(char *palavra){
     int inf=0;
     int sup=23;
@@ -395,7 +296,7 @@ TAtomo reconheceAtomoSimples(){
     return ERRO;
 }
 
-//Funcao que verifica se o lexema analisado È um operador relacional
+//Funcao que verifica se o lexema analisado � um operador relacional
 int isOpRelacional(char c){
 
     if(c == '<' && *buffer == '='){
@@ -438,7 +339,7 @@ AtrOpRelacional reconheceOpRelacional(){
     return -1;
 }
 
-//Funcao que verifica se o lexema È um operador aritmetico
+//Funcao que verifica se o lexema � um operador aritmetico
 int isOpAritmetico(char c){
     if(c == '+' || c == '-' || c == '*'){
         return 1;
@@ -543,9 +444,12 @@ TInfoAtomo AnaLex(void)
             strncpy(tmp,init,(end_ - init));
             tmp[end_ - init] = 0;
             int pr = verifica_palavra_reservada(tmp);
-            if(pr+1)
-                strncpy(info_atomo.atributo.str_id,palavras_reservadas[pr],17);
-
+            //Soma-se 1 na condicao pois o retorno da funcao
+            //e referente ao indice da palavra reservada encontrada
+            //Desta forma ao nao encontrar nenhuma palavra reservada, retorna-se -1
+            if(pr+1){
+                info_atomo.atomo = pr;
+            }
             else{
                 strncpy(info_atomo.atributo.str_id,init,(end_ - init));
                 info_atomo.atributo.str_id[end_ - init] = 0;
@@ -575,7 +479,7 @@ TInfoAtomo AnaLex(void)
                     a++;
                     base[x] = '.';
                     x++;
-                    info_atomo.atomo = CONSTANTE_FLUTUANTE;
+                    info_atomo.atomo = CONSTANTE_REAL;
                 }
                 if (*a == '^'){
                     a++;
@@ -593,7 +497,7 @@ TInfoAtomo AnaLex(void)
             }
             int expoente_int = atoi(expoente);
 
-            if (info_atomo.atomo == CONSTANTE_FLUTUANTE){
+            if (info_atomo.atomo == CONSTANTE_REAL){
                 float base_float = atof(base);
                 info_atomo.atributo.valor_real = pow(base_float, expoente_int);
 
@@ -603,7 +507,7 @@ TInfoAtomo AnaLex(void)
                 info_atomo.atributo.valor_inteiro = pow(base_int, expoente_int);
 
             }
-            //AJUSTAR O C[ODIGO AQUI
+            //AJUSTAR O CODIGO AQUI
         }
         else{
             char tmp[17];

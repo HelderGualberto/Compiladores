@@ -19,3 +19,13 @@
 	<ctype.h>
 	<math.h>
 
+1461452547 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<math.h>
+	"definitions.h"
+
+1461452288 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\definitions.h
+
