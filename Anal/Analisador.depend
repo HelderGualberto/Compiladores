@@ -1,0 +1,76 @@
+# depslib dependency file v1.0
+1461844736 source:e:\facul\anal\analex.c
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	<stdio.h>
+	<ctype.h>
+	"analex.h"
+
+1461845018 e:\facul\anal\analex.h
+
+1461844702 e:\facul\anal\definitions.h
+
+1461723786 source:e:\facul\anal\definitions.c
+	"definitions.h"
+
+1461812832 source:e:\facul\anal\hashtable.c
+	"hashtable.h"
+	<stdlib.h>
+	<stdio.h>
+
+1461812836 e:\facul\anal\hashtable.h
+	"lista_atomo.h"
+	"procedimentos.h"
+	"funcoes.h"
+
+1461727096 e:\facul\anal\lista.h
+
+1461845158 source:e:\facul\anal\main.c
+	<stdio.h>
+	<stdlib.h>
+	"sintatico.h"
+	"tabsimbolo.h"
+	"hashtable.h"
+	"analex.h"
+
+1461812454 source:e:\facul\anal\lista.c
+
+1461812896 e:\facul\anal\lista_atomo.h
+	<stdio.h>
+	"atomo.h"
+
+1461844546 e:\facul\anal\atomo.h
+	"parametros.h"
+	"funcoes.h"
+	"procedimentos.h"
+	"variavel.h"
+
+1461813510 e:\facul\anal\parametros.h
+	<stdio.h>
+
+1461813378 e:\facul\anal\funcoes.h
+	<stdio.h>
+
+1461813112 e:\facul\anal\procedimentos.h
+	<stdio.h>
+
+1461814848 e:\facul\anal\variavel.h
+	<stdio.h>
+
+1461813268 source:e:\facul\anal\lista_atomo.c
+	"lista_atomo.h"
+	<stdlib.h>
+	<string.h>
+
+1461848608 e:\facul\anal\sintatico.h
+	"tabsimbolo.h"
+
+1461847480 source:e:\facul\anal\tabsimbolo.c
+	"tabsimbolo.h"
+	<stdlib.h>
+	<string.h>
+
+1461851640 e:\facul\anal\tabsimbolo.h
+	"analex.h"
+
