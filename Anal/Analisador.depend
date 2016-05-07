@@ -74,3 +74,43 @@
 1461851640 e:\facul\anal\tabsimbolo.h
 	"analex.h"
 
+1462652207 source:c:\users\joaolucas\desktop\compiladores\anal\analex.c
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	<stdio.h>
+	<ctype.h>
+	"analex.h"
+
+1462652207 c:\users\joaolucas\desktop\compiladores\anal\analex.h
+
+1462652207 source:c:\users\joaolucas\desktop\compiladores\anal\lista.c
+
+1462652207 source:c:\users\joaolucas\desktop\compiladores\anal\lista_atomo.c
+	"lista_atomo.h"
+	<stdlib.h>
+	<string.h>
+
+1462652207 c:\users\joaolucas\desktop\compiladores\anal\lista_atomo.h
+	<stdio.h>
+	"atomo.h"
+
+1462653725 source:c:\users\joaolucas\desktop\compiladores\anal\main.c
+	<stdio.h>
+	<stdlib.h>
+	"sintatico.h"
+	"tabsimbolo.h"
+
+1462652207 c:\users\joaolucas\desktop\compiladores\anal\sintatico.h
+	"tabsimbolo.h"
+
+1462653891 c:\users\joaolucas\desktop\compiladores\anal\tabsimbolo.h
+	"analex.h"
+
+1462653874 source:c:\users\joaolucas\desktop\compiladores\anal\tabsimbolo.c
+	"tabsimbolo.h"
+	<stdlib.h>
+	<string.h>
+
+1462652207 source:c:\users\joaolucas\desktop\compiladores\anal\sintatico.c
+

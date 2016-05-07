@@ -12,7 +12,7 @@
 #include <string.h>
 
 // Tabela de simbolos global
-TNoTabSimbolos *tabela_simbolos[PRIME_NUMBER];
+TListaTabSimbolos tabela_simbolos[PRIME_NUMBER];
 
 
 int hashpjw( char * s )
@@ -36,15 +36,11 @@ void initTabSimbolos(){
 }
 
 // adiciona na tabela simbolos
-void adiciona_atomo_lista_atomos(TNoTabSimbolos **iniLista, TNoIdentificador NoIdentificador){
-    TNoTabSimbolos *atual = *iniLista;
+void adiciona_atomo_lista_atomos(TListaTabSimbolos *lista, TNoIdentificador *NoIdentificador){
+    TNoTabSimbolos *atual = lista->cabeca;
     TNoTabSimbolos *anterior = NULL;
-
-    TNoTabSimbolos *novoNo = (TNoTabSimbolos*)calloc(1,sizeof(TNoTabSimbolos));
-    memcpy(&(novoNo->NoIdentificador),&NoIdentificador,sizeof(TNoTabSimbolos));
-
     while (atual != NULL) {
-        int compare = strcmp(atual->NoIdentificador.identificador, NoIdentificador.identificador);
+        int compare = strcmp(atual->NoIdentificador->identificador, NoIdentificador->identificador);
         if (compare == 0)
             exit(EXIT_FAILURE);
 
@@ -53,15 +49,14 @@ void adiciona_atomo_lista_atomos(TNoTabSimbolos **iniLista, TNoIdentificador NoI
     }
 
     if (anterior == NULL){ // lista vazia
-        *iniLista = novoNo;
+        lista->cabeca = NoIdentificador;
     } else {
-        anterior->prox = novoNo;
+        anterior->prox = NoIdentificador;
     }
 }
 
-void adiciona_atomo_lista_hash(TNoIdentificador NoIdentificador){
-    int idxHash = hashpjw(NoIdentificador.identificador);
-
+void adiciona_atomo_lista_hash(TNoIdentificador *NoIdentificador){
+    int idxHash = hashpjw(NoIdentificador->identificador);
     adiciona_atomo_lista_atomos(&tabela_simbolos[idxHash], NoIdentificador);
 
 }

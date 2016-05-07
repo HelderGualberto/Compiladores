@@ -48,11 +48,15 @@ typedef struct{
 }TNoIdentificador;
 
 typedef struct _no_tabsimbolos{
-    TNoIdentificador NoIdentificador;
+    TNoIdentificador *NoIdentificador;
     struct _no_tabsimbolos *prox;
 
 }TNoTabSimbolos;
 
+typedef struct{
+    TNoTabSimbolos *cabeca;
+
+}TListaTabSimbolos;
 
 
 
@@ -65,7 +69,7 @@ typedef struct{
 
 
 //funcoes que manipulam as listas de parametro
-void adiciona_atomo_lista_atomos(TNoTabSimbolos **iniLista, TNoIdentificador NoIdentificador);
-void adiciona_atomo_lista_hash(TNoIdentificador NoIdentificador);
+void adiciona_atomo_lista_atomos(TListaTabSimbolos *lista, TNoIdentificador *NoIdentificador);
+void adiciona_atomo_lista_hash(TNoIdentificador *NoIdentificador);
 
 #endif // TABSIMBOLO_H_INCLUDED
