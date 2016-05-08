@@ -88,7 +88,12 @@ int operador_adicao(){
 }
 int oprador_multiplicacao(){
     if(consomeSemErro(MULTIPLICACAO));
-    else if(consomeSemErro())
+    else if(consomeSemErro(DIV));
+    else if(consomeSemErro(E));
+    else {
+        TAtomo*
+
+    }
 }
 void termo(){
     fator();
