@@ -50,7 +50,7 @@ int main( int narg, char ** args)
     printf("Analisador Lexico versao 1.0\n");
 
     do{
-        info_atomo = consome();
+        info_atomo = AnaLex();
         if( info_atomo.atomo == ID )
             printf("reconhecido %s - atributo=%s\n", msg_atomo[info_atomo.atomo], info_atomo.atributo.str_id);
         else if( info_atomo.atomo == NUM_REAL )

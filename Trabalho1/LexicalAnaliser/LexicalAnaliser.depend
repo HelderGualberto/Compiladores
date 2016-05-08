@@ -19,7 +19,7 @@
 	<ctype.h>
 	<math.h>
 
-1462716004 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\main.c
+1462716986 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -29,10 +29,10 @@
 
 1462715442 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\definitions.h
 
-1462716403 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\analex.c
+1462716980 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\analex.c
 	"analex.h"
 
-1462716401 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\analex.h
+1462716972 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\analex.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

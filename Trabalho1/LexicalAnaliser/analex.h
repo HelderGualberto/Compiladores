@@ -88,7 +88,7 @@ typedef struct{
 }TInfoAtomo;
 
 char * read_file(FILE*);
-TInfoAtomo consome();
+TInfoAtomo AnaLex(void);
 
 extern char * msg_atomo[];
 extern char * msg_op_relacional[];
