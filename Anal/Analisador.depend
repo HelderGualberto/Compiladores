@@ -114,3 +114,25 @@
 
 1462652207 source:c:\users\joaolucas\desktop\compiladores\anal\sintatico.c
 
+1462715010 source:c:\users\helder\documents\compiladores\anal\analex.c
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	<stdio.h>
+	<ctype.h>
+	"analex.h"
+
+1462715010 c:\users\helder\documents\compiladores\anal\analex.h
+
+1462715010 source:c:\users\helder\documents\compiladores\anal\main.c
+	<stdio.h>
+	<stdlib.h>
+	"sintatico.h"
+	"tabsimbolo.h"
+
+1461888554 c:\users\helder\documents\compiladores\anal\sintatico.h
+	"tabsimbolo.h"
+
+1462710159 c:\users\helder\documents\compiladores\anal\tabsimbolo.h
+	"analex.h"
+

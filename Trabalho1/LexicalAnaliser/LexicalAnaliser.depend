@@ -19,13 +19,33 @@
 	<ctype.h>
 	<math.h>
 
-1461452547 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\main.c
+1462716004 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 	<math.h>
-	"definitions.h"
+	"analex.h"
 
-1461452288 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\definitions.h
+1462715442 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\definitions.h
+
+1462716403 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\analex.c
+	"analex.h"
+
+1462716401 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\analex.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<math.h>
+
+1461888554 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\sintatico.c
+
+1462710159 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\tabsimbolo.c
+	"tabsimbolo.h"
+	<stdlib.h>
+	<string.h>
+
+1462716350 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\tabsimbolo.h
+	"analex.h"
 
