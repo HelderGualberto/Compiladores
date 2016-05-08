@@ -92,4 +92,5 @@ TInfoAtomo AnaLex(void);
 
 extern char * msg_atomo[];
 extern char * msg_op_relacional[];
+extern int linha;
 #endif // ANALEX_H_INCLUDED

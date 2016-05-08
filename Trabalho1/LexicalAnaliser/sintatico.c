@@ -8,13 +8,21 @@ void consome(TAtomo atomoEsperado){
         TInfoAtomo info_atomo = AnaLex();
         lookahead = info_atomo.atomo;
     }
+
     else{
-        printf("Erro sintatico! Atomo esperado: %s - Atomo recebido: %s",msg_atomo[atomoEsperado],msg_atomo[lookahead]);
+        printf("Erro sintatico:[%d] -  Atomo esperado: %s - Atomo recebido: %s",linha,msg_atomo[atomoEsperado],msg_atomo[lookahead]);
         exit(EXIT_FAILURE);
     }
+}
+
+void programa(){
 
 }
 
 void AnaSintatico(){
+
+    initTabSimbolos();
+
+    programa();
 
 }
