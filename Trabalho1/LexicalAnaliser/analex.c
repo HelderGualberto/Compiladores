@@ -99,10 +99,7 @@ char *msg_atomo[]={
     "Ponto ponto",
     "Abre colchetes",
     "Fecha colchetes",
-    "Constante inteiro",
     "Constante string",
-    "Constante char",
-    "Constante flutuante"
 };
 // funcao principal do analisador lexico, retorna o atomo reconhecido
 // com seus atributos
