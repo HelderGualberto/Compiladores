@@ -1,5 +1,5 @@
 ALgoRitmo alg1
 
-variaveis var_1 vetor [10..] caractere;
+variaveis var_1 vetor [10..102] caractere;
 
 inicio fum

@@ -76,6 +76,7 @@ void tipos(){
 void parametros_formais(){
 
 }
+
 int operador_adicao(){
     if(consomeSemErro(ADICAO));
     else if(consomeSemErro(SUBTRACAO));
@@ -85,27 +86,32 @@ int operador_adicao(){
         TAtomo* atomos = {ADICAO,SUBTRACAO,MOD,OU,0};
         ErroSintaticoComposto(atomos);
     }
+    return 1;
 }
+
 int oprador_multiplicacao(){
     if(consomeSemErro(MULTIPLICACAO));
     else if(consomeSemErro(DIV));
     else if(consomeSemErro(E));
     else {
-        TAtomo*
-
+        TAtomo* atomos = {MULTIPLICACAO,DIV,E,0};
+        ErroSintaticoComposto(atomos);
     }
 }
+
 void termo(){
     fator();
 
 }
 void expressao_simples(){
+    int add = 0;
     if(consomeSemErro(ADICAO));
     else consomeSemErro(SUBTRACAO);
     termo();
-
-    operador_adicao();
-    termo();
+    do{
+        add = operador_adicao();
+        termo();
+    }while()
 }
 
 void expressao(){
@@ -173,6 +179,9 @@ void comando(int obrigatorio){
 }
 void declaracao_de_funcao(int obrigatoria){
     //Criar no identificador
+    TNoIdentificador id_funcao;
+    funcao func;
+    adiciona_atomo_lista_atomos(func.listaVariaveis,id_funcao)
     //criar lista de simbolos
     if (obrigatoria == 0){
         consome(FUNCAO);
@@ -199,7 +208,7 @@ void declaracao_de_funcao(int obrigatoria){
     //adicionar tipo lista de variaveis a funcao
 
     consome(INICIO);
-    comando();
+    comando(0);
     consome(FIM);
     consome(FUNCAO);
     declaracao_de_funcao(obrigatoria+1);
@@ -233,7 +242,7 @@ void bloco(){
         }while (lookahead == FUNCAO)
     }
     consome(INICIO);
-    comando();
+    comando(0);
     consome(FIM);
 }
 void programa(){
