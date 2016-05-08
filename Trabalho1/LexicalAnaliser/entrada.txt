@@ -1,25 +1,5 @@
+ALgoRitmo alg1
 
+variaveis var_1 vetor [10..] caractere;
 
-{aisdfugaskdçfgdf}
-
-INTEIRO x = 5+9*3;
-
-
-
-SE( a <= b) xs = 123,1;
-SENAO xs = 90,9
-
-OU x OU z
-
-ALGORITMO e legais
-
-VETOR INTEIRO x;
-
-x  >= OU <= z
-
-x := 5,12
-
-x:= 4^5
-x:= 5,65^-2
-"lalala"
-'c'
+inicio fum

@@ -1,7 +1,6 @@
 #ifndef TABSIMBOLO_H_INCLUDED
 #define TABSIMBOLO_H_INCLUDED
 #define PRIME_NUMBER 211
-#define MAX_ID 17
 #include "analex.h"
 
 
@@ -39,7 +38,7 @@ typedef struct{
 
 
 typedef struct{
-    char identificador[MAX_ID];
+    char *identificador;
     TCatAtributo tipo_atributo;
     union {
         variavel var;

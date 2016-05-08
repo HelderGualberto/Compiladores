@@ -5,6 +5,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <math.h>
+#define MAX_ID 17
 
 typedef enum{
     ALGORITMO,
@@ -67,13 +68,13 @@ typedef enum{
 // definicao de uma estrutura union para os atributos do atomo (Tokens)
 typedef union
 {
-    char str_id[17];//16+1 para guardar o \0
     int valor_inteiro;
     float valor_real;
     AtrOpRelacional op_relac;
     char constante[32];
     char constante_char;
     int constante_inteiro;
+    char str_id[MAX_ID];//16+1 para guardar o \0
 }TAtributo;
 
 // defincao de uma estrutura para retornar as informacoes do atomo
