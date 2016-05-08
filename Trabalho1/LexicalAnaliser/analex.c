@@ -116,10 +116,6 @@ int linha=1;
 // abrir arquivo
 // alocar o buffer_global em funcao do tamanho do arquivo de entrada
 
-TInfoAtomo consome(){
-    return AnaLex();
-}
-
 char * read_file(FILE* input){
 
     fseek(input, 0, SEEK_END); // Envia a referencia de leitura do arquivo para o fim do arquivo

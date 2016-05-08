@@ -12,7 +12,7 @@
 	<ctype.h>
 	<math.h>
 
-1462717305 source:c:\users\carolina\desktop\compiladores\trabalho1\lexicalanaliser\main.c
+1462717762 source:c:\users\carolina\desktop\compiladores\trabalho1\lexicalanaliser\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -20,7 +20,7 @@
 	<math.h>
 	"analex.h"
 
-1462716004 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\main.c
+1462716986 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -30,10 +30,10 @@
 
 1462715442 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\definitions.h
 
-1462716403 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\analex.c
+1462716980 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\analex.c
 	"analex.h"
 
-1462716401 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\analex.h
+1462716972 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\analex.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -50,17 +50,19 @@
 1462716350 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\tabsimbolo.h
 	"analex.h"
 
-1462717299 source:c:\users\carolina\desktop\compiladores\trabalho1\lexicalanaliser\analex.c
+1462717762 source:c:\users\carolina\desktop\compiladores\trabalho1\lexicalanaliser\analex.c
 	"analex.h"
 
-1462717288 c:\users\carolina\desktop\compiladores\trabalho1\lexicalanaliser\analex.h
+1462717762 c:\users\carolina\desktop\compiladores\trabalho1\lexicalanaliser\analex.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 	<math.h>
 
-1462717103 source:c:\users\carolina\desktop\compiladores\trabalho1\lexicalanaliser\sintatico.c
+1462717762 source:c:\users\carolina\desktop\compiladores\trabalho1\lexicalanaliser\sintatico.c
+	"sintatico.h"
+	"analex.h"
 
 1462717454 source:c:\users\carolina\desktop\compiladores\trabalho1\lexicalanaliser\tabsimbolo.c
 	"tabsimbolo.h"
@@ -69,4 +71,10 @@
 
 1462717103 c:\users\carolina\desktop\compiladores\trabalho1\lexicalanaliser\tabsimbolo.h
 	"analex.h"
+
+1462717762 c:\users\carolina\desktop\compiladores\trabalho1\lexicalanaliser\sintatico.h
+	"tabsimbolo.h"
+	"analex.h"
+	<stdio.h>
+	<stdlib.h>
 
