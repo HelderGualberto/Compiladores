@@ -5,7 +5,7 @@
 
 
 struct _no_tabsimbolos;
-
+struct _lista_tabsimbolos;
 typedef enum{
     CAT_VARIAVEL_GLOBAL,
     CAT_VARIAVEL_LOCAL,
@@ -26,14 +26,14 @@ typedef struct {
 }parametro;
 
 typedef struct {
-    struct _no_tabsimbolos  *listaParametros;
-    struct _no_tabsimbolos  *listaVariaveis;
+    struct _lista_tabsimbolos  *listaParametros;
+    struct _lista_tabsimbolos  *listaVariaveis;
 }procedimento;
 
 typedef struct{
     TAtomo tipo_de_retorno; // inteiro | real | caractere | logico
-    struct _no_tabsimbolos  *listaParametros;
-    struct _no_tabsimbolos  *listaVariaveis;
+    struct _lista_tabsimbolos  *listaParametros;
+    struct _lista_tabsimbolos  *listaVariaveis;
 }funcao;
 
 
@@ -55,7 +55,7 @@ typedef struct _no_tabsimbolos{
 
 }TNoTabSimbolos;
 
-typedef struct{
+typedef struct _lista_tabsimbolos{
     TNoTabSimbolos *cabeca;
 
 }TListaTabSimbolos;
