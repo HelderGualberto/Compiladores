@@ -89,11 +89,11 @@ int main( int narg, char ** args)
             printf("reconhecido %s\n",msg_atomo[info_atomo.atomo]);
         else if(info_atomo.atomo == CONSTANTE_STRING)
             printf("reconhecido CONSTANTE_STRING - atributo: %s\n", info_atomo.atributo.constante);\
-        else if(info_atomo.atomo == CONSTANTE_CHAR)
+        else if(info_atomo.atomo == CARACTERE)
             printf("reconhecido CONSTANTE_CHAR - atributo: %c\n", info_atomo.atributo.constante_char);
-        else if (info_atomo.atomo == CONSTANTE_INTEIRO)
+        else if (info_atomo.atomo == NUM_INT)
             printf("reconhecido CONSTANTE_INTEIRO - atributo: %d\n", info_atomo.atributo.constante_inteiro);
-        else if (info_atomo.atomo == CONSTANTE_REAL)
+        else if (info_atomo.atomo == NUM_REAL)
             printf("reconhecido CONSTANTE_REAL - atributo: %f\n", info_atomo.atributo.valor_real);
 
     }while( info_atomo.atomo != EOS && info_atomo.atomo != ERRO );

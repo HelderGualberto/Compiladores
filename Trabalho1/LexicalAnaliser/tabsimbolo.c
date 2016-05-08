@@ -37,6 +37,7 @@ void initTabSimbolos(){
 
 // adiciona na tabela simbolos
 void adiciona_atomo_lista_atomos(TListaTabSimbolos *lista, TNoIdentificador *NoIdentificador){
+
     TNoTabSimbolos *atual = lista->cabeca;
     TNoTabSimbolos *anterior = NULL;
     while (atual != NULL) {
@@ -47,11 +48,13 @@ void adiciona_atomo_lista_atomos(TListaTabSimbolos *lista, TNoIdentificador *NoI
         anterior = atual;
         atual = atual->prox;
     }
-
+    TNoTabSimbolos *novoNo = malloc(sizeof(TNoTabSimbolos *));
+    novoNo->NoIdentificador = NoIdentificador;
+    novoNo->prox = NULL;
     if (anterior == NULL){ // lista vazia
-        lista->cabeca = NoIdentificador;
+        lista->cabeca = novoNo;
     } else {
-        anterior->prox = NoIdentificador;
+        anterior->prox = novoNo;
     }
 }
 
