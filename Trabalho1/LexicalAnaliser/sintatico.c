@@ -202,25 +202,31 @@ void declaracao_de_funcao(int obrigatoria){
 
 void declaracao_de_variaveis(TAtomo localORglobal){
     if(consomeSemErro(VARIAVEIS)){
-        TNoIdentificador id_var;
-        variavel var;
-        var.ordem_declaracao = ordemVar++;
+        do {
+            TNoIdentificador id_var;
+            variavel var;
+            var.ordem_declaracao = ordemVar++;
 
-        consome(ID);
-        id_var.identificador = lookahead.atributo.str_id;
-        tipos();
-        var.tipo_variavel = lookahead.atomo;
+            consome(ID);
+            id_var.identificador = lookahead.atributo.str_id;
+            tipos();
+            var.tipo_variavel = lookahead.atomo;
 
-        id_var.tipo_atributo = localORglobal;
-        id_var.conjunto_atributos.var = var;
+            id_var.tipo_atributo = localORglobal;
+            id_var.conjunto_atributos.var = var;
 
-        consome(PONTO_VIRGULA);
-        adiciona_atomo_lista_hash(&id_var);
+            consome(PONTO_VIRGULA);
+            adiciona_atomo_lista_hash(&id_var);
+        while(consomeSemErro(VARIAVEIS));
     }
 }
 void bloco(){
     declaracao_de_variaveis(CAT_VARIAVEL_GLOBAL);
-    declaracao_de_funcao(0);
+    if (lookahead == FUNCAO){
+        do{
+            declaracao_de_funcao(0);
+        }while (lookahead == FUNCAO)
+    }
     consome(INICIO);
     comando();
     consome(FIM);
