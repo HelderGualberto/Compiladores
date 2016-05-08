@@ -199,7 +199,7 @@ CONSTANTE_INTEIRO:
     }
     if(!isalpha(*buffer)){
         end_ = buffer;
-        return CONSTANTE_INTEIRO;
+        return NUM_INT;
     }
     return ERRO;
 }
@@ -468,7 +468,7 @@ TInfoAtomo AnaLex(void)
             tmp[end_ - init] = 0;
             info_atomo.atributo.valor_inteiro = atoi(tmp);
         }
-        else if (info_atomo.atomo == CONSTANTE_INTEIRO){
+        else if (info_atomo.atomo == NUM_INT){
             strncpy(info_atomo.atributo.str_id,init,(end_ - init));
 
             char *a = info_atomo.atributo.constante;
@@ -480,7 +480,7 @@ TInfoAtomo AnaLex(void)
                     a++;
                     base[x] = '.';
                     x++;
-                    info_atomo.atomo = CONSTANTE_REAL;
+                    info_atomo.atomo = NUM_REAL;
                 }
                 if (*a == '^'){
                     a++;
@@ -498,7 +498,7 @@ TInfoAtomo AnaLex(void)
             }
             int expoente_int = atoi(expoente);
 
-            if (info_atomo.atomo == CONSTANTE_REAL){
+            if (info_atomo.atomo == NUM_REAL){
                 float base_float = atof(base);
                 info_atomo.atributo.valor_real = pow(base_float, expoente_int);
 
@@ -552,7 +552,7 @@ TInfoAtomo AnaLex(void)
         }
         buffer++;
     } else if (c == 39){
-        info_atomo.atomo = CONSTANTE_CHAR;
+        info_atomo.atomo = CARACTERE;
         info_atomo.atributo.constante_char = *buffer;
         buffer++;
         if (*buffer != '\''){

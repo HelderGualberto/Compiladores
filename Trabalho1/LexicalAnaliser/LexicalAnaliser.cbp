@@ -31,9 +31,22 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="analex.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="analex.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="sintatico.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sintatico.h" />
+		<Unit filename="tabsimbolo.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="tabsimbolo.h" />
+		<Unit filename="variavel.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
