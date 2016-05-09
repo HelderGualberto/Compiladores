@@ -277,16 +277,23 @@ void comando(int obrigatorio){
 void declaracao_de_funcao(){
     //Criar no identificador
     //criar lista de simbolos
+<<<<<<< HEAD
 
+    consome(FUNCAO);
+    consome(ID);
+    consome(ABRE_PAR);
+    //adicionar identificador para no identificador
+=======
     do {
         consome(FUNCAO);
+>>>>>>> b9c40db22dd932ca837a52229cfb706d70efd693
 
         TNoIdentificador *id_var = malloc(sizeof(TNoIdentificador));
         funcao func;
         strcpy (id_var->identificador,lookahead.atributo.str_id);
         consome(ID);
         consome(ABRE_PAR);
-  //adicionar identificador para no identificador
+    //adicionar identificador para no identificador
         parametros_formais();
     //adicionar lista de parametros
         consome(FECHA_PAR);
@@ -315,6 +322,10 @@ void declaracao_de_variaveis(TAtomo localORglobal){
             var.ordem_declaracao = ordemVar++;
             strcpy (id_var->identificador,lookahead.atributo.str_id);
             consome(ID);
+<<<<<<< HEAD
+            id_var->identificador = lookahead.atributo.str_id;
+=======
+>>>>>>> b9c40db22dd932ca837a52229cfb706d70efd693
             tipos();
             var.tipo_variavel = lookahead.atomo;
 
