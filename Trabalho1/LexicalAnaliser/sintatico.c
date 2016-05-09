@@ -245,19 +245,25 @@ void comando(int obrigatorio){
 void declaracao_de_funcao(int obrigatoria){
     //Criar no identificador
     //criar lista de simbolos
-    consome(FUNCAO);
-    consome(ID);
-    consome(ABRE_PAR);
+    do {
+        consome(FUNCAO);
+
+        TNoIdentificador *id_var = malloc(sizeof(TNoIdentificador));
+        funcao func;
+        strcpy (id_var->identificador,lookahead.atributo.str_id);
+        consome(ID);
+        consome(ABRE_PAR);
     //adicionar identificador para no identificador
-
-    parametros_formais();
+        parametros_formais();
     //adicionar lista de parametros
-
-    consome(FECHA_PAR);
-    consome(PONTO_VIRGULA);
-
-    v_tipo_simples();
+        consome(FECHA_PAR);
+        consome(PONTO_VIRGULA);
+        v_tipo_simples();
+        adiciona_atomo_lista_hash(id_var);
     //adicionar tipo de retorno a funcao
+    }while (lookahead.atomo == FUNCAO);
+
+
 
     declaracao_de_variaveis(CAT_VARIAVEL_LOCAL);
     //adicionar tipo lista de variaveis a funcao
@@ -271,20 +277,19 @@ void declaracao_de_funcao(int obrigatoria){
 void declaracao_de_variaveis(TAtomo localORglobal){
     if(consomeSemErro(VARIAVEIS)){
         do {
-            TNoIdentificador id_var;
+            TNoIdentificador *id_var = malloc(sizeof(TNoIdentificador));
             variavel var;
             var.ordem_declaracao = ordemVar++;
-
+            strcpy (id_var->identificador,lookahead.atributo.str_id);
             consome(ID);
-            id_var.identificador = lookahead.atributo.str_id;
             tipos();
             var.tipo_variavel = lookahead.atomo;
 
-            id_var.tipo_atributo = localORglobal;
-            id_var.conjunto_atributos.var = var;
+            id_var->tipo_atributo = localORglobal;
+            id_var->conjunto_atributos.var = var;
 
             consome(PONTO_VIRGULA);
-            adiciona_atomo_lista_hash(&id_var);
+            adiciona_atomo_lista_hash(id_var);
         }while(lookahead.atomo == ID);
     }
 }

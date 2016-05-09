@@ -86,3 +86,39 @@
 	<stdio.h>
 	<stdlib.h>
 
+1462749825 source:c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\analex.c
+	"analex.h"
+
+1462738289 c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\analex.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<math.h>
+
+1462738289 source:c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	<math.h>
+	"analex.h"
+
+1462755682 source:c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\sintatico.c
+	"sintatico.h"
+	"analex.h"
+
+1462737369 c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\sintatico.h
+	"tabsimbolo.h"
+	"analex.h"
+	<stdio.h>
+	<stdlib.h>
+
+1462755543 c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\tabsimbolo.h
+	"analex.h"
+
+1462755666 source:c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\tabsimbolo.c
+	"tabsimbolo.h"
+	<stdlib.h>
+	<string.h>
+

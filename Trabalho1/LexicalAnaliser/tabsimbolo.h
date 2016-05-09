@@ -38,7 +38,7 @@ typedef struct{
 
 
 typedef struct{
-    char *identificador;
+    char identificador[17];
     TCatAtributo tipo_atributo;
     union {
         variavel var;
@@ -72,6 +72,7 @@ typedef struct{
 
 //funcoes que manipulam as listas de parametro
 void adiciona_atomo_lista_atomos(TListaTabSimbolos *lista, TNoIdentificador *NoIdentificador);
-void adiciona_atomo_lista_hash(TNoIdentificador *NoIdentificador);
-
+void adiciona_atomo_lista_hash(TNoIdentificador *);
+void imprime_lista_simbolos(TListaTabSimbolos *);
+void imprime_tabela_simbolos();
 #endif // TABSIMBOLO_H_INCLUDED
