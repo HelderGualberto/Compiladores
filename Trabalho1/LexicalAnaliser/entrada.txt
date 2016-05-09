@@ -13,6 +13,8 @@ inicio x := 10*1 + 0*10 > 10*9 + 0*10; FIM funcao
 
 funcao asd (ref sad inteiro; z real);inteiro
 
+variaveis varx inteiro;
+
 inicio x := 10*1 + 0*10 > 10*9 + 0*10; FIM funcao
 
 

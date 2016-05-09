@@ -10,6 +10,8 @@ void expressao();
 void comando(int);
 void declaracao_de_variaveis(TAtomo);
 void initTabSimbolos();
+int declaracao_de_procedimento();
+void declaracao_de_funcao();
 
 void ErroSintaticoComposto(TAtomo * atomos){
     printf("Erro sintatico:[%d] -  Atomo recebido: %s\n",linha,msg_atomo[lookahead.atomo]);
@@ -58,6 +60,8 @@ void v_tipo_simples(){
     else if(consomeSemErro(REAL));
     else if(consomeSemErro(CARACTERE));
     else if(consomeSemErro(LOGICO));
+    else if(consomeSemErro(COMENTARIO_2));
+    else if(consomeSemErro(COMENTARIO_1));
     else{
         TAtomo atomos[5] = {NUM_INT,NUM_REAL,CARACTERE,LOGICO,0};
         ErroSintaticoComposto(atomos);
@@ -94,6 +98,8 @@ int operador_adicao(){
     if(consomeSemErro(ADICAO));
     else if(consomeSemErro(SUBTRACAO));
     else if(consomeSemErro(MOD));
+    else if(consomeSemErro(COMENTARIO_2));
+    else if(consomeSemErro(COMENTARIO_1));
     else if(consomeSemErro(OU));
     else{
        return 0;
@@ -126,6 +132,8 @@ void fator(){
     else if(consomeSemErro(CONSTANTE_STRING));
     else if(consomeSemErro(FALSO));
     else if(consomeSemErro(NAO));
+    else if(consomeSemErro(COMENTARIO_2));
+    else if(consomeSemErro(COMENTARIO_1));
     else if(consomeSemErro(ABRE_PAR)){
         expressao();
         consome(FECHA_PAR);
@@ -149,6 +157,28 @@ void termo(){
     }
 }
 
+void declaracao_de_rotina(){
+    if(declaracao_de_procedimento());
+        return;
+    declaracao_de_funcao();
+}
+
+int declaracao_de_procedimento(){
+    if(consomeSemErro(PROCEDIMENTO)){
+        consome(ID);
+        consome(ABRE_PAR);
+        parametros_formais();
+        consome(FECHA_PAR);
+        declaracao_de_variaveis(CAT_VARIAVEL_GLOBAL);
+        consome(INICIO);
+        comando(0);
+        consome(FIM);
+        consome(PROCEDIMENTO);
+        return 1;
+    }
+    return 0;
+}
+
 void lista_expressao(){
     expressao();
     while(lookahead.atomo == PONTO_VIRGULA){
@@ -159,6 +189,8 @@ void lista_expressao(){
 
 void expressao_simples(){
     if(consomeSemErro(ADICAO));
+    else if(consomeSemErro(COMENTARIO_2));
+    else if(consomeSemErro(COMENTARIO_1));
     else consomeSemErro(SUBTRACAO);
     termo();
     if(!operador_adicao()){
@@ -242,9 +274,10 @@ void comando(int obrigatorio){
         ErroSintaticoComposto(atomos);
     }
 }
-void declaracao_de_funcao(int obrigatoria){
+void declaracao_de_funcao(){
     //Criar no identificador
     //criar lista de simbolos
+
     consome(FUNCAO);
     consome(ID);
     consome(ABRE_PAR);
@@ -271,20 +304,20 @@ void declaracao_de_funcao(int obrigatoria){
 void declaracao_de_variaveis(TAtomo localORglobal){
     if(consomeSemErro(VARIAVEIS)){
         do {
-            TNoIdentificador id_var;
+            TNoIdentificador *id_var = malloc(sizeof(TNoIdentificador));
             variavel var;
             var.ordem_declaracao = ordemVar++;
 
             consome(ID);
-            id_var.identificador = lookahead.atributo.str_id;
+            id_var->identificador = lookahead.atributo.str_id;
             tipos();
             var.tipo_variavel = lookahead.atomo;
 
-            id_var.tipo_atributo = localORglobal;
-            id_var.conjunto_atributos.var = var;
+            id_var->tipo_atributo = localORglobal;
+            id_var->conjunto_atributos.var = var;
 
             consome(PONTO_VIRGULA);
-            adiciona_atomo_lista_hash(&id_var);
+            adiciona_atomo_lista_hash(id_var);
         }while(lookahead.atomo == ID);
     }
 }
@@ -292,7 +325,7 @@ void bloco(){
     declaracao_de_variaveis(CAT_VARIAVEL_GLOBAL);
     if (lookahead.atomo == FUNCAO){
         do{
-            declaracao_de_funcao(0);
+            declaracao_de_funcao();
         }while (lookahead.atomo == FUNCAO);
     }
     consome(INICIO);
