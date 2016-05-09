@@ -104,7 +104,7 @@
 	<math.h>
 	"analex.h"
 
-1462757284 source:c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\sintatico.c
+1462758818 source:c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\sintatico.c
 	"sintatico.h"
 	"analex.h"
 
@@ -114,10 +114,10 @@
 	<stdio.h>
 	<stdlib.h>
 
-1462757219 c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\tabsimbolo.h
+1462758475 c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\tabsimbolo.h
 	"analex.h"
 
-1462757242 source:c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\tabsimbolo.c
+1462759247 source:c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\tabsimbolo.c
 	"tabsimbolo.h"
 	<stdlib.h>
 	<string.h>
