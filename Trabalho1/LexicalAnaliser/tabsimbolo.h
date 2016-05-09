@@ -41,10 +41,10 @@ typedef struct{
     char identificador[17];
     TCatAtributo tipo_atributo;
     union {
-        variavel var;
-        parametro par;
-        procedimento procedimento;
-        funcao func;
+        variavel *var;
+        parametro *par;
+        procedimento *procedimento;
+        funcao *func;
     }conjunto_atributos;
 
 }TNoIdentificador;
@@ -69,7 +69,11 @@ typedef struct{
 }TabSimbolos;
 */
 
-
+funcao *nova_funcao();
+variavel *nova_variavel();
+parametro *novo_parametro();
+procedimento *novo_procedimento();
+TNoIdentificador *novo_TNoIdentificador();
 //funcoes que manipulam as listas de parametro
 void adiciona_atomo_lista_atomos(TListaTabSimbolos *lista, TNoIdentificador *NoIdentificador);
 void adiciona_atomo_lista_hash(TNoIdentificador *);

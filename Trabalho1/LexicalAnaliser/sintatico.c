@@ -281,11 +281,13 @@ void declaracao_de_funcao(){
     do {
         consome(FUNCAO);
 
-        TNoIdentificador *id_var = malloc(sizeof(TNoIdentificador));
-        funcao func;
+        TNoIdentificador *id_var = novo_TNoIdentificador();
+        funcao *func = nova_funcao();
         strcpy (id_var->identificador,lookahead.atributo.str_id);
+        id_var->conjunto_atributos.func = func;
         consome(ID);
         consome(ABRE_PAR);
+
   //adicionar identificador para no identificador
         parametros_formais();
     //adicionar lista de parametros
@@ -308,13 +310,13 @@ void declaracao_de_funcao(){
 void declaracao_de_variaveis(TAtomo localORglobal){
     if(consomeSemErro(VARIAVEIS)){
         do {
-            TNoIdentificador *id_var = malloc(sizeof(TNoIdentificador));
-            variavel var;
-            var.ordem_declaracao = ordemVar++;
+            TNoIdentificador *id_var = novo_TNoIdentificador();
+            variavel *var = nova_variavel();
+            var->ordem_declaracao = ordemVar++;
             strcpy (id_var->identificador,lookahead.atributo.str_id);
             consome(ID);
             tipos();
-            var.tipo_variavel = lookahead.atomo;
+            var->tipo_variavel = lookahead.atomo;
 
             id_var->tipo_atributo = localORglobal;
             id_var->conjunto_atributos.var = var;

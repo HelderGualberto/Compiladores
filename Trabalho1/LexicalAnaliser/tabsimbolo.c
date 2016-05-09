@@ -39,7 +39,7 @@ void initTabSimbolos(){
     int x ;
     tabela_simbolos =  malloc(sizeof(TListaTabSimbolos *)* PRIME_NUMBER);
     for (x = 0 ; x < PRIME_NUMBER ; x++){
-        tabela_simbolos[x] = malloc(sizeof(TListaTabSimbolos *));
+        tabela_simbolos[x] = calloc(1,sizeof(TListaTabSimbolos *));
         memset(tabela_simbolos[x],0,sizeof(tabela_simbolos[x]));
 
     }
@@ -80,7 +80,7 @@ void imprime_tabela_simbolos(){
     int x;
     for (x = 0 ; x < PRIME_NUMBER; x++){
         TListaTabSimbolos *tabSimbolo =  tabela_simbolos[x];
-        printf("posicao %d da tabela de espalhamento \n", x);
+        printf(" \n posicao %d da tabela de espalhamento ", x);
         imprime_lista_simbolos(tabSimbolo);
     }
 }
@@ -107,4 +107,24 @@ void imprime_lista_simbolos(TListaTabSimbolos *tabSimbolos){
      printf("parametro %s ", atual->NoIdentificador->identificador);
     atual = atual->prox;
     }
+}
+funcao *nova_funcao(){
+    funcao *novafunc = calloc(1, sizeof(funcao));
+    return novafunc;
+}
+variavel *nova_variavel(){
+    return  calloc(1, sizeof(variavel));
+
+}
+parametro *novo_parametro(){
+    return  calloc(1, sizeof(parametro));
+
+}
+procedimento *novo_procedimento(){
+    return  calloc(1, sizeof(procedimento));
+
+}
+TNoIdentificador *novo_TNoIdentificador(){
+        return  calloc(1, sizeof(TNoIdentificador));
+
 }

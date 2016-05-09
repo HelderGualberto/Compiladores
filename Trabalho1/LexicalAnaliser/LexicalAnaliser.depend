@@ -20,7 +20,7 @@
 	<math.h>
 	"analex.h"
 
-1462728655 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\main.c
+1462757591 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -40,16 +40,16 @@
 	<ctype.h>
 	<math.h>
 
-1462757244 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\sintatico.c
+1462757591 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\sintatico.c
 	"sintatico.h"
 	"analex.h"
 
-1462755963 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\tabsimbolo.c
+1462757591 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\tabsimbolo.c
 	"tabsimbolo.h"
 	<stdlib.h>
 	<string.h>
 
-1462755963 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\tabsimbolo.h
+1462757591 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\tabsimbolo.h
 	"analex.h"
 
 1462717762 source:c:\users\carolina\desktop\compiladores\trabalho1\lexicalanaliser\analex.c
@@ -96,7 +96,7 @@
 	<ctype.h>
 	<math.h>
 
-1462738289 source:c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\main.c
+1462756415 source:c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -104,7 +104,7 @@
 	<math.h>
 	"analex.h"
 
-1462755682 source:c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\sintatico.c
+1462757284 source:c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\sintatico.c
 	"sintatico.h"
 	"analex.h"
 
@@ -114,10 +114,10 @@
 	<stdio.h>
 	<stdlib.h>
 
-1462755543 c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\tabsimbolo.h
+1462757219 c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\tabsimbolo.h
 	"analex.h"
 
-1462755666 source:c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\tabsimbolo.c
+1462757242 source:c:\users\joaolucas\desktop\compiladores\trabalho1\lexicalanaliser\tabsimbolo.c
 	"tabsimbolo.h"
 	<stdlib.h>
 	<string.h>
