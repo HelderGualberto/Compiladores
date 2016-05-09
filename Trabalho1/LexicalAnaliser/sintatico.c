@@ -181,8 +181,7 @@ int declaracao_de_procedimento(){
 
 void lista_expressao(){
     expressao();
-    while(lookahead.atomo == PONTO_VIRGULA){
-        consome(PONTO_VIRGULA);
+    while(consomeSemErro(PONTO_VIRGULA)){
         expressao();
     }
 }
@@ -222,6 +221,7 @@ int comando_atribuicao(){
 int chamada_procedimento(){
     consome(ABRE_PAR);
     lista_expressao();
+    consome(FECHA_PAR);
     consome(PONTO_VIRGULA);
     return 1;
 }
@@ -295,8 +295,6 @@ void declaracao_de_funcao(){
         adiciona_atomo_lista_hash(id_var);
     //adicionar tipo de retorno a funcao
     }while (lookahead.atomo == FUNCAO);
-
-
 
     declaracao_de_variaveis(CAT_VARIAVEL_LOCAL);
     //adicionar tipo lista de variaveis a funcao
