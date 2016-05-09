@@ -41,5 +41,6 @@ int main( int narg, char ** args)
     printf("Analisador Lexico versao 1.0\n");
 
     AnaSintatico();
+    imprime_tabela_simbolos();
     return 0;
 }
