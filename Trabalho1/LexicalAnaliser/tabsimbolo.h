@@ -15,7 +15,7 @@ typedef enum{
 }TCatAtributo;
 
 typedef struct{
-    TAtomo tipo_variavel; // inteiro | real | caractere | logico
+    TAtomo tipo_variavel; // inteiro | real | caractere | logico | vetor
     int ordem_declaracao;
 }variavel;
 
@@ -35,7 +35,6 @@ typedef struct{
     struct _lista_tabsimbolos  *listaParametros;
     struct _lista_tabsimbolos  *listaVariaveis;
 }funcao;
-
 
 typedef struct{
     char identificador[17];

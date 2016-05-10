@@ -109,7 +109,13 @@ void imprime_lista_simbolos(TListaTabSimbolos *tabSimbolos){
     }
 }
 funcao *nova_funcao(){
-    funcao *novafunc = calloc(1, sizeof(funcao));
+    funcao *novafunc = malloc(sizeof(funcao));
+    novafunc->listaParametros = malloc(sizeof(TListaTabSimbolos));
+    novafunc->listaParametros->cabeca = NULL;
+
+    novafunc->listaVariaveis = malloc(sizeof(TListaTabSimbolos));
+    novafunc->listaVariaveis->cabeca = NULL;
+
     return novafunc;
 }
 variavel *nova_variavel(){

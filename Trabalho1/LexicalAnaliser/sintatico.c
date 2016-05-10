@@ -8,7 +8,7 @@ int ordemParam=0;
 void lista_expressao();
 void expressao();
 void comando(int);
-void declaracao_de_variaveis(TAtomo);
+void declaracao_de_variaveis(TAtomo , funcao *);
 void initTabSimbolos();
 int declaracao_de_procedimento();
 void declaracao_de_funcao();
@@ -169,7 +169,7 @@ int declaracao_de_procedimento(){
         consome(ABRE_PAR);
         parametros_formais();
         consome(FECHA_PAR);
-        declaracao_de_variaveis(CAT_VARIAVEL_GLOBAL);
+        declaracao_de_variaveis(CAT_VARIAVEL_GLOBAL, NULL);
         consome(INICIO);
         comando(0);
         consome(FIM);
@@ -295,10 +295,11 @@ void declaracao_de_funcao(){
         consome(PONTO_VIRGULA);
         v_tipo_simples();
         adiciona_atomo_lista_hash(id_var);
+        declaracao_de_variaveis(CAT_VARIAVEL_LOCAL, func);
+
     //adicionar tipo de retorno a funcao
     }while (lookahead.atomo == FUNCAO);
 
-    declaracao_de_variaveis(CAT_VARIAVEL_LOCAL);
     //adicionar tipo lista de variaveis a funcao
 
     consome(INICIO);
@@ -307,7 +308,7 @@ void declaracao_de_funcao(){
     consome(FUNCAO);
 }
 
-void declaracao_de_variaveis(TAtomo localORglobal){
+void declaracao_de_variaveis(TAtomo localORglobal, funcao *funcOrigin){
     if(consomeSemErro(VARIAVEIS)){
         do {
             TNoIdentificador *id_var = novo_TNoIdentificador();
@@ -322,12 +323,15 @@ void declaracao_de_variaveis(TAtomo localORglobal){
             id_var->conjunto_atributos.var = var;
 
             consome(PONTO_VIRGULA);
-            adiciona_atomo_lista_hash(id_var);
+            if (funcOrigin == NULL)
+                adiciona_atomo_lista_hash(id_var);
+            else
+                adiciona_atomo_lista_atomos(funcOrigin->listaVariaveis, id_var);
         }while(lookahead.atomo == ID);
     }
 }
 void bloco(){
-    declaracao_de_variaveis(CAT_VARIAVEL_GLOBAL);
+    declaracao_de_variaveis(CAT_VARIAVEL_GLOBAL, NULL);
     if (lookahead.atomo == FUNCAO){
         do{
             declaracao_de_funcao();
