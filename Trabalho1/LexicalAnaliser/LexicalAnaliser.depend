@@ -20,7 +20,7 @@
 	<math.h>
 	"analex.h"
 
-1462757591 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\main.c
+1462847918 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -30,26 +30,26 @@
 
 1462715442 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\definitions.h
 
-1462748695 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\analex.c
+1462847405 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\analex.c
 	"analex.h"
 
-1462726819 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\analex.h
+1462842866 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\analex.h
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
 	<ctype.h>
 	<math.h>
 
-1462757591 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\sintatico.c
+1462847785 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\sintatico.c
 	"sintatico.h"
 	"analex.h"
 
-1462757591 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\tabsimbolo.c
+1462844049 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\tabsimbolo.c
 	"tabsimbolo.h"
 	<stdlib.h>
 	<string.h>
 
-1462757591 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\tabsimbolo.h
+1462844049 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\tabsimbolo.h
 	"analex.h"
 
 1462717762 source:c:\users\carolina\desktop\compiladores\trabalho1\lexicalanaliser\analex.c

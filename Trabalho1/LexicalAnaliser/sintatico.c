@@ -7,16 +7,16 @@ int ordemVar=0;
 int ordemParam=0;
 void lista_expressao();
 void expressao();
-void comando(int);
+int comando();
 void declaracao_de_variaveis(TAtomo , funcao *);
 void initTabSimbolos();
 int declaracao_de_procedimento();
-void declaracao_de_funcao();
+int declaracao_de_funcao();
 
 void ErroSintaticoComposto(TAtomo * atomos){
     printf("Erro sintatico:[%d] -  Atomo recebido: %s\n",linha,msg_atomo[lookahead.atomo]);
-    while(*atomos++ != -1)
-        if(*atomos != -1)
+    while(*atomos++ != ERRO)
+        if(*atomos != ERRO)
         printf("Atomo esperado: %s\n",msg_atomo[*atomos]);
 
     exit(EXIT_FAILURE);
@@ -32,21 +32,34 @@ void ErroLexico(){
 }
 
 void consome(TAtomo atomoEsperado){
-    if(atomoEsperado == lookahead.atomo){
+    if(lookahead.atomo == COMENTARIO_1){
         lookahead = AnaLex();
+    }
+    else if(lookahead.atomo == COMENTARIO_2){
+        lookahead = AnaLex();
+    }
+    if(atomoEsperado == lookahead.atomo){
         printf("Consumido: %s\n",msg_atomo[lookahead.atomo]);
+        lookahead = AnaLex();
     }
     else if(lookahead.atomo == ERRO){
         ErroLexico();
     }
+
     else
         ErroSintatico(atomoEsperado);
 }
 
 int consomeSemErro(TAtomo atomoEsperado){
-   if(atomoEsperado == lookahead.atomo){
+   if(lookahead.atomo == COMENTARIO_1){
         lookahead = AnaLex();
+    }
+    else if(lookahead.atomo == COMENTARIO_2){
+        lookahead = AnaLex();
+    }
+   if(atomoEsperado == lookahead.atomo){
         printf("Consumido: %s\n",msg_atomo[lookahead.atomo]);
+        lookahead = AnaLex();
         return 1;
     }
     else if(lookahead.atomo == ERRO){
@@ -86,6 +99,7 @@ void tipos(){
     if(v_tipo_composto()) return;
     v_tipo_simples();
 }
+
 void parametros_formais(){
     do{
         consomeSemErro(REF);
@@ -132,25 +146,16 @@ void fator(){
     else if(consomeSemErro(CONSTANTE_STRING));
     else if(consomeSemErro(FALSO));
     else if(consomeSemErro(NAO));
-    else if(consomeSemErro(COMENTARIO_2));
-    else if(consomeSemErro(COMENTARIO_1));
     else if(consomeSemErro(ABRE_PAR)){
         expressao();
         consome(FECHA_PAR);
     }
     else{
-        TAtomo atomos[7] = {NUM_INT,NUM_REAL,CARACTERE,CONSTANTE_STRING,FALSO,NAO,-1};
+        TAtomo atomos[7] = {NUM_INT,NUM_REAL,CARACTERE,CONSTANTE_STRING,FALSO,NAO,ERRO};
         ErroSintaticoComposto(atomos);
     }
 }
-
-
 void termo(){
-    fator();
-    if(!operador_multiplicacao()){
-        TAtomo atomos[4] = {MULTIPLICACAO,DIV,E,-1};
-        ErroSintaticoComposto(atomos);
-    }
     fator();
     while(operador_multiplicacao()){
         fator();
@@ -159,8 +164,11 @@ void termo(){
 
 void declaracao_de_rotina(){
     if(declaracao_de_procedimento());
-        return;
-    declaracao_de_funcao();
+    else if(declaracao_de_funcao());
+    else{
+        TAtomo atomos[3]= {FUNCAO,PROCEDIMENTO,ERRO};
+        ErroSintaticoComposto(atomos);
+    }
 }
 
 int declaracao_de_procedimento(){
@@ -171,7 +179,7 @@ int declaracao_de_procedimento(){
         consome(FECHA_PAR);
         declaracao_de_variaveis(CAT_VARIAVEL_GLOBAL, NULL);
         consome(INICIO);
-        comando(0);
+        while(comando());
         consome(FIM);
         consome(PROCEDIMENTO);
         return 1;
@@ -188,14 +196,7 @@ void lista_expressao(){
 
 void expressao_simples(){
     if(consomeSemErro(ADICAO));
-    else if(consomeSemErro(COMENTARIO_2));
-    else if(consomeSemErro(COMENTARIO_1));
     else consomeSemErro(SUBTRACAO);
-    termo();
-    if(!operador_adicao()){
-        TAtomo atomos[5] = {ADICAO,SUBTRACAO,MOD,OU,-1};
-        ErroSintaticoComposto(atomos);
-    }
     termo();
     while(operador_adicao()){
         termo();
@@ -209,13 +210,10 @@ void expressao(){
     }
 }
 
-int comando_atribuicao(){
-    if(consomeSemErro(ATRIBUICAO)){
-        expressao();
-        consome(PONTO_VIRGULA);
-        return 1;
-    }
-    return 0;
+void comando_atribuicao(){
+    consome(ATRIBUICAO);
+    expressao();
+    consome(PONTO_VIRGULA);
 }
 
 int chamada_procedimento(){
@@ -225,62 +223,52 @@ int chamada_procedimento(){
     consome(PONTO_VIRGULA);
     return 1;
 }
-int comando_se(){
-    if(consomeSemErro(SE)){
-        expressao();
-        consome(ENTAO);
-        comando(0);
-        if(consomeSemErro(SENAO))
-            comando(0);
-        consome(FIM);
-        consome(SE);
-        return 1;
-    }
-    return 0;
+
+void comando_se(){
+    consome(SE);
+    expressao();
+    consome(ENTAO);
+    while(comando());
+    if(consomeSemErro(SENAO))
+        while(comando());
+    consome(FIM);
+    consome(SE);
 }
-int comando_enquanto(){
-    if(consomeSemErro(ENQUANTO)){
-        expressao();
-        consome(FACA);
-        comando(0);
-        consome(FIM);
-        consome(ENQUANTO);
-        return 1;
-    }
-    return 0;
+
+void comando_enquanto(){
+    consome(ENQUANTO);
+    expressao();
+    consome(FACA);
+    while(comando());
+    consome(FIM);
+    consome(ENQUANTO);
 }
-void comando(int obrigatorio){
+
+int comando(){
     if(lookahead.atomo == ID){
         consome(ID);
         if(lookahead.atomo == ATRIBUICAO){
             comando_atribuicao();
-            comando(obrigatorio+1);
         }
         else{
             chamada_procedimento();
-            comando(obrigatorio+1);
         }
+        return 1;
     }
     else if(lookahead.atomo == SE){
         comando_se();
-        comando(obrigatorio+1);
+        return 1;
     }
     else if(lookahead.atomo == ENQUANTO){
         comando_enquanto();
-        comando(obrigatorio+1);
+        return 1;
     }
-    else if(obrigatorio == 0){
-        TAtomo atomos[4] = {ID,SE,ENQUANTO,-1};
-        ErroSintaticoComposto(atomos);
-    }
+    return 0;
 }
-void declaracao_de_funcao(){
+int declaracao_de_funcao(){
     //Criar no identificador
     //criar lista de simbolos
-
-    do {
-        consome(FUNCAO);
-
+    if(consomeSemErro(FUNCAO)){
         TNoIdentificador *id_var = novo_TNoIdentificador();
         funcao *func = nova_funcao();
         strcpy (id_var->identificador,lookahead.atributo.str_id);
@@ -288,24 +276,26 @@ void declaracao_de_funcao(){
         consome(ID);
         consome(ABRE_PAR);
 
-  //adicionar identificador para no identificador
+        //adicionar identificador para no identificador
         parametros_formais();
-    //adicionar lista de parametros
+        //adicionar lista de parametros
         consome(FECHA_PAR);
         consome(PONTO_VIRGULA);
         v_tipo_simples();
         adiciona_atomo_lista_hash(id_var);
         declaracao_de_variaveis(CAT_VARIAVEL_LOCAL, func);
 
-    //adicionar tipo de retorno a funcao
-    }while (lookahead.atomo == FUNCAO);
+        //adicionar tipo de retorno a funcao
 
-    //adicionar tipo lista de variaveis a funcao
+        //adicionar tipo lista de variaveis a funcao
 
-    consome(INICIO);
-    comando(0);
-    consome(FIM);
-    consome(FUNCAO);
+        consome(INICIO);
+        while(comando());
+        consome(FIM);
+        consome(FUNCAO);
+        return 1;
+    }
+    return 0;
 }
 
 void declaracao_de_variaveis(TAtomo localORglobal, funcao *funcOrigin){
@@ -332,13 +322,9 @@ void declaracao_de_variaveis(TAtomo localORglobal, funcao *funcOrigin){
 }
 void bloco(){
     declaracao_de_variaveis(CAT_VARIAVEL_GLOBAL, NULL);
-    if (lookahead.atomo == FUNCAO){
-        do{
-            declaracao_de_funcao();
-        }while (lookahead.atomo == FUNCAO);
-    }
+    while(declaracao_de_funcao());
     consome(INICIO);
-    comando(0);
+    while(comando());
     consome(FIM);
 }
 void programa(){
