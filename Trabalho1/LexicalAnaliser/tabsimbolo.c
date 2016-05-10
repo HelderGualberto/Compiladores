@@ -78,33 +78,42 @@ void adiciona_atomo_lista_hash(TNoIdentificador *NoIdentificador){
 }
 void imprime_tabela_simbolos(){
     int x;
+    printf("\n\n\n --------------------------------------------\n\n");
     for (x = 0 ; x < PRIME_NUMBER; x++){
         TListaTabSimbolos *tabSimbolo =  tabela_simbolos[x];
-        printf(" \n posicao %d da tabela de espalhamento ", x);
         imprime_lista_simbolos(tabSimbolo);
     }
 }
 void imprime_lista_simbolos(TListaTabSimbolos *tabSimbolos){
     TNoTabSimbolos *atual = tabSimbolos->cabeca;
+    procedimento *proc;
+    funcao *func;
     while(atual != NULL){
     switch (atual->NoIdentificador->tipo_atributo){
         case(CAT_VARIAVEL_GLOBAL):
-            printf("variavel global ");
+            if (atual->NoIdentificador->identificador != NULL){
+                printf("Variavel global %s - Tipo %s\n", atual->NoIdentificador->identificador, msg_atomo[atual->NoIdentificador->conjunto_atributos.var->tipo_variavel]);
+            }
             break;
         case(CAT_VARIAVEL_LOCAL):
-            printf("variavel local ");
+            if (atual->NoIdentificador->identificador != NULL){
+                printf("--Variavel local %s - Tipo %s\n", atual->NoIdentificador->identificador, msg_atomo[atual->NoIdentificador->conjunto_atributos.var->tipo_variavel]);
+            }
             break;
         case(CAT_PROCEDIMENTO):
-            printf("procedimento ");
+
             break;
         case(CAT_FUNCAO):
-            printf("funcao ");
+            if (atual->NoIdentificador->identificador != NULL){
+                printf("Funcao %s - Tipo %s\n", atual->NoIdentificador->identificador, msg_atomo[atual->NoIdentificador->conjunto_atributos.func->tipo_de_retorno]);
+                imprime_lista_simbolos(atual->NoIdentificador->conjunto_atributos.func->listaParametros);
+                imprime_lista_simbolos(atual->NoIdentificador->conjunto_atributos.func->listaVariaveis);
+
+            }
             break;
         case(CAT_PARAMETRO):
-            printf("parametro ");
             break;
     }
-     printf("parametro %s ", atual->NoIdentificador->identificador);
     atual = atual->prox;
     }
 }
@@ -112,7 +121,6 @@ funcao *nova_funcao(){
     funcao *novafunc = malloc(sizeof(funcao));
     novafunc->listaParametros = malloc(sizeof(TListaTabSimbolos));
     novafunc->listaParametros->cabeca = NULL;
-
     novafunc->listaVariaveis = malloc(sizeof(TListaTabSimbolos));
     novafunc->listaVariaveis->cabeca = NULL;
 
