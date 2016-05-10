@@ -1,25 +1,33 @@
 ALgoRitmo alg1
 
 variaveis var_1 vetor [10..102] caractere;
-varx inteiro;
-
 <<<<<<< HEAD
-var_2 vetor [10..102] caractere;
-
+var2 inteiro;
 var_3 vetor [10..102] caractere;
-=======
+
+var_4 vetor [10..102] caractere;
+
 funcao asd (ref sad inteiro; z real);inteiro 
->>>>>>> 7978999c5b2e24cee7682d4db07992af4f017a20
+variaveis var_5 caractere;
+var6 inteiro;
+var_7 vetor [10..102] caractere;
+=======
+varx inteiro;
+var_2 vetor [10..102] caractere;
+var_3 vetor [10..102] caractere;
+
+funcao asd (ref sad inteiro; z real);caractere 
+variaveis var_1 caractere;
+varx inteiro;
+>>>>>>> fa2d0608e2a139cc92b6ea3c890e855cf83c0769
 
 
-funcao asd (ref z inteiro; z real);inteiro
-
-inicio x := 10*1 + 0*10 > 10*9 + 0*10; FIM funcao
+inicio x := 10 > 10*9 + nao;{vai se fuder;;;;;;;;;;;} FIM funcao
 funcao aqd (ref sad inteiro; z real);inteiro
-variaveis varx inteiro;
+variaveis var8 inteiro;
 inicio x ( 10*1 + 0*10; 10*9 + 0*10; 10*9 + 0*10 ); FIM funcao
+
 inicio se 10*1 + 0*10 entao x := 10*1 + 0*10 > 10*9 + 0*10; FIM se
 fim
 
-
-
+  

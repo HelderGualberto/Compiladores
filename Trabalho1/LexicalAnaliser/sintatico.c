@@ -172,6 +172,14 @@ void declaracao_de_rotina(){
 }
 
 int declaracao_de_procedimento(){
+
+    /*
+
+    ADICIONAR DECLARACAO DE PROCEDIMENTO DETRO DO HASH
+    INCLUIR LISTA DE PARAMETROS
+    INCLUIR LISTA DE VARIAVEIS
+
+    */
     if(consomeSemErro(PROCEDIMENTO)){
         consome(ID);
         consome(ABRE_PAR);
@@ -268,9 +276,17 @@ int comando(){
 int declaracao_de_funcao(){
     //Criar no identificador
     //criar lista de simbolos
+
+    /*
+        INCLUIR A LISTA DE PARAMETROS NO HASH
+    */
+
+
     if(consomeSemErro(FUNCAO)){
+        TAtomo atomos[5] = {NUM_INT,NUM_REAL,CARACTERE,LOGICO,0};
         TNoIdentificador *id_var = novo_TNoIdentificador();
         funcao *func = nova_funcao();
+        id_var->tipo_atributo = CAT_FUNCAO;
         strcpy (id_var->identificador,lookahead.atributo.str_id);
         id_var->conjunto_atributos.func = func;
         consome(ID);
@@ -281,9 +297,21 @@ int declaracao_de_funcao(){
         //adicionar lista de parametros
         consome(FECHA_PAR);
         consome(PONTO_VIRGULA);
-        v_tipo_simples();
-        adiciona_atomo_lista_hash(id_var);
+        switch (lookahead.atomo){
+        case INTEIRO:
+        case REAL:
+        case CARACTERE:
+        case LOGICO:
+        func->tipo_de_retorno = lookahead.atomo;
+        consome(lookahead.atomo);
+        break;
+        default:
+            ErroSintaticoComposto(atomos);
+        break;
+        }
         declaracao_de_variaveis(CAT_VARIAVEL_LOCAL, func);
+        id_var->conjunto_atributos.func = func;
+        adiciona_atomo_lista_hash(id_var);
 
         //adicionar tipo de retorno a funcao
 
@@ -292,7 +320,7 @@ int declaracao_de_funcao(){
         consome(INICIO);
         while(comando());
         consome(FIM);
-        consome(FUNCAO);
+        consome(FUNCAO); // consome o fim da funcao - nao pode remover
         return 1;
     }
     return 0;
@@ -306,8 +334,9 @@ void declaracao_de_variaveis(TAtomo localORglobal, funcao *funcOrigin){
             var->ordem_declaracao = ordemVar++;
             strcpy (id_var->identificador,lookahead.atributo.str_id);
             consome(ID);
-            tipos();
             var->tipo_variavel = lookahead.atomo;
+
+            tipos();
 
             id_var->tipo_atributo = localORglobal;
             id_var->conjunto_atributos.var = var;
