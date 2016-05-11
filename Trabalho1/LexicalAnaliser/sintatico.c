@@ -15,10 +15,10 @@ int declaracao_de_funcao();
 
 void ErroSintaticoComposto(TAtomo * atomos){
     printf("Erro sintatico:[%d] -  Atomo recebido: %s\n",linha,msg_atomo[lookahead.atomo]);
-    while(*atomos++ != ERRO)
-        if(*atomos != ERRO)
+    while(*atomos != ERRO){
         printf("Atomo esperado: %s\n",msg_atomo[*atomos]);
-
+        atomos++;
+    }
     exit(EXIT_FAILURE);
 }
 
@@ -32,12 +32,11 @@ void ErroLexico(){
 }
 
 void consome(TAtomo atomoEsperado){
-    if(lookahead.atomo == COMENTARIO_1){
+    while(lookahead.atomo == COMENTARIO_1 ||
+          lookahead.atomo == COMENTARIO_2   ){
         lookahead = AnaLex();
     }
-    else if(lookahead.atomo == COMENTARIO_2){
-        lookahead = AnaLex();
-    }
+
     if(atomoEsperado == lookahead.atomo){
         printf("Consumido: %s\n",msg_atomo[lookahead.atomo]);
         lookahead = AnaLex();
@@ -51,12 +50,10 @@ void consome(TAtomo atomoEsperado){
 }
 
 int consomeSemErro(TAtomo atomoEsperado){
-   if(lookahead.atomo == COMENTARIO_1){
+   while(lookahead.atomo == COMENTARIO_1 ||
+          lookahead.atomo == COMENTARIO_2   ){
         lookahead = AnaLex();
-    }
-    else if(lookahead.atomo == COMENTARIO_2){
-        lookahead = AnaLex();
-    }
+   }
    if(atomoEsperado == lookahead.atomo){
         printf("Consumido: %s\n",msg_atomo[lookahead.atomo]);
         lookahead = AnaLex();
@@ -233,7 +230,6 @@ int chamada_procedimento(){
 }
 
 void comando_se(){
-    consome(SE);
     expressao();
     consome(ENTAO);
     while(comando());
@@ -244,7 +240,6 @@ void comando_se(){
 }
 
 void comando_enquanto(){
-    consome(ENQUANTO);
     expressao();
     consome(FACA);
     while(comando());
@@ -253,21 +248,24 @@ void comando_enquanto(){
 }
 
 int comando(){
-    if(lookahead.atomo == ID){
-        consome(ID);
+    if(consomeSemErro(ID)){
         if(lookahead.atomo == ATRIBUICAO){
             comando_atribuicao();
         }
-        else{
+        else if(lookahead.atomo == ABRE_PAR){
             chamada_procedimento();
+        }
+        else{
+            TAtomo atomos[3] = {ATRIBUICAO,ABRE_PAR,ERRO};
+            ErroSintaticoComposto(atomos);
         }
         return 1;
     }
-    else if(lookahead.atomo == SE){
+    else if(consomeSemErro(SE)){
         comando_se();
         return 1;
     }
-    else if(lookahead.atomo == ENQUANTO){
+    else if(consomeSemErro(ENQUANTO)){
         comando_enquanto();
         return 1;
     }
@@ -318,7 +316,7 @@ int declaracao_de_funcao(){
         //adicionar tipo lista de variaveis a funcao
 
         consome(INICIO);
-        while(comando());
+        while(comando()){}
         consome(FIM);
         consome(FUNCAO); // consome o fim da funcao - nao pode remover
         return 1;
@@ -365,9 +363,7 @@ void programa(){
 
 
 void AnaSintatico(){
-
     initTabSimbolos();
     lookahead = AnaLex();
     programa();
-
 }

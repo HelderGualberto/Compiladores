@@ -359,7 +359,6 @@ int isComentario(char c){
     if(c == '{')
         return 1;
     if(c == '(' && *buffer == '*'){
-        buffer++;
         return 1;
     }
     return 0;
@@ -506,6 +505,9 @@ TInfoAtomo AnaLex(void)
 
             }
             //AJUSTAR O CODIGO AQUI
+        }
+        else if(info_atomo.atomo == ERRO){
+            return info_atomo;
         }
         else{
             char tmp[17];

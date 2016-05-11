@@ -20,7 +20,7 @@
 	<math.h>
 	"analex.h"
 
-1462848982 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\main.c
+1462927178 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\main.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -30,7 +30,7 @@
 
 1462715442 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\definitions.h
 
-1462848464 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\analex.c
+1462927014 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\analex.c
 	"analex.h"
 
 1462842866 c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\analex.h
@@ -40,7 +40,7 @@
 	<ctype.h>
 	<math.h>
 
-1462849283 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\sintatico.c
+1462929515 source:c:\users\helder\documents\compiladores\trabalho1\lexicalanaliser\sintatico.c
 	"sintatico.h"
 	"analex.h"
 

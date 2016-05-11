@@ -17,29 +17,35 @@
 #include <math.h>
 #include "analex.h"
 
-
+void AnaSintatico();
+void imprime_tabela_simbolos();
 int main( int narg, char ** args)
 {
     //codigo para entrada do caminho do arquivo via linha de comando
-        char * caminho_entrada = malloc(sizeof(char)*30);
-        FILE* arquivo_entrada;
+    char * caminho_entrada = malloc(sizeof(char)*30);
+    FILE* arquivo_entrada;
 
-        if(narg > 1){
-            printf("%s",args[1]);
-            caminho_entrada = args[1];
-        }
+    if(narg > 1){
+        printf("%s",args[1]);
+        caminho_entrada = args[1];
+    }
 
-        arquivo_entrada = fopen(caminho_entrada,"r");
-        if(arquivo_entrada == NULL){
-            printf("Caminho nao encontrado!\n");
-            exit(EXIT_FAILURE);
-        }
+    arquivo_entrada = fopen(caminho_entrada,"r");
+    if(arquivo_entrada == NULL){
+        printf("Caminho nao encontrado!\n");
+        exit(EXIT_FAILURE);
+    }
 
-        read_file(arquivo_entrada);
+    read_file(arquivo_entrada);
 
-   // buffer = "314^567";
-    printf("Analisador Lexico versao 1.0\n");
-
+    printf("Analisador Sintatico versao 5.1.3\n");
+   /*
+    TInfoAtomo a = AnaLex();
+    while(a.atomo != EOS){
+        printf("Encontrado: %s\n",msg_atomo[a.atomo]);
+        a = AnaLex();
+    }
+    */
     AnaSintatico();
     imprime_tabela_simbolos();
     return 0;

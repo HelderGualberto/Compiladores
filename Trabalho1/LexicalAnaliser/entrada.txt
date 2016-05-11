@@ -8,18 +8,49 @@ var_4 vetor [10..102] caractere;
 
 funcao asd (ref sad inteiro; z real);caractere 
 
-variaveis 
+variaveis  {declaracao de variaveis}
 var_5 caractere;
 var6 inteiro;
 var_7 vetor [10..102] caractere;
 var_1 caractere;
 varx inteiro;
 
-inicio x := 10 > 10*98 + nao;{vai se fuder;;;;;;;;;;;} FIM funcao
+inicio
 
-funcao aqd (ref sad inteiro; z real);inteiro
-variaveis var8 inteiro;
-inicio x ( 10*1 + 0*10; 10*9 + 0*10; 10*9 + 0*10 ); FIM funcao
+x := 10 > 10*98 + nao;{vai se fuder;;;;;;;;;;;} 
+w := 678,9;
+y := 123,2;
+
+procedure (a;b;c;d;ea;f);
+
+se a > b entao
+x:=10,8; senao
+x:=15,2; fim se
+enquanto a = c faca
+x:= -7+5;
+1fim enquanto
+
+FIM funcao
+
+(*
+laksdjfhlaskdfjahs
+akçsdjflhaskdfjahsd
+asdçkfjasdhçfkjashdf
+açsdkfjahsdkjfah
+açsdjfaçhsdf
+aksjdfhhhsihdhddh			
+*)
+
+
+funcao aqd (ref sad {1234567890ALGORITMO} inteiro; z real);inteiro
+
+variaveis 
+
+var8 inteiro;
+
+inicio x ( 10*1 + 0*10; 10*9 + 0*10; 10*9 + 0*10 ); 
+
+FIM funcao
 
 inicio se 10*1 + 0*10 entao x := 10*1 + 0*10 > 10*9 + 0*10; FIM se
 fim
