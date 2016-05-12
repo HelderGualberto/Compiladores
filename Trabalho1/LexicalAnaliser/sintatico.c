@@ -8,7 +8,7 @@ int ordemParam=0;
 void lista_expressao();
 void expressao();
 int comando();
-void declaracao_de_variaveis(TAtomo , funcao *);
+void declaracao_de_variaveis(TAtomo , TListaTabSimbolos *);
 void initTabSimbolos();
 int declaracao_de_procedimento();
 int declaracao_de_funcao();
@@ -47,6 +47,7 @@ void consome(TAtomo atomoEsperado){
 
     else
         ErroSintatico(atomoEsperado);
+
 }
 
 int consomeSemErro(TAtomo atomoEsperado){
@@ -97,11 +98,30 @@ void tipos(){
     v_tipo_simples();
 }
 
-void parametros_formais(){
+void parametros_formais(TListaTabSimbolos *listaSimbolos){
+    int isRef = 0;
     do{
+        parametro *par = novo_parametro();
+        TNoIdentificador *novo_no = novo_TNoIdentificador();
+        if (lookahead.atomo == REF){
+            isRef = 1;
+        }
         consomeSemErro(REF);
+        strcpy (novo_no->identificador,lookahead.atributo.str_id);
         consome(ID);
-        v_tipo_simples();
+    if (isRef){
+        par->passagem = REF;
+    } else {
+        par->passagem = ERRO;
+
+    }
+
+    par->tipo_parametro =lookahead.atomo;
+
+    v_tipo_simples();
+    novo_no->conjunto_atributos.par = par;
+    novo_no->tipo_atributo = CAT_PARAMETRO;
+    adiciona_atomo_lista_atomos(listaSimbolos, novo_no);
     }while(consomeSemErro(PONTO_VIRGULA));
 }
 
@@ -178,11 +198,20 @@ int declaracao_de_procedimento(){
 
     */
     if(consomeSemErro(PROCEDIMENTO)){
+            procedimento *proc = novo_procedimento();
+        if (lookahead.atomo == ID){
+            TNoIdentificador *id_var = novo_TNoIdentificador();
+            procedimento *proc = novo_procedimento();
+            id_var->tipo_atributo = CAT_PROCEDIMENTO;
+            strcpy (id_var->identificador,lookahead.atributo.str_id);
+            id_var->conjunto_atributos.procedimento = proc;
+
+        }
         consome(ID);
         consome(ABRE_PAR);
-        parametros_formais();
+        parametros_formais(proc->listaParametros);
         consome(FECHA_PAR);
-        declaracao_de_variaveis(CAT_VARIAVEL_GLOBAL, NULL);
+        declaracao_de_variaveis(CAT_VARIAVEL_LOCAL, proc->listaVariaveis);
         consome(INICIO);
         while(comando());
         consome(FIM);
@@ -291,7 +320,7 @@ int declaracao_de_funcao(){
         consome(ABRE_PAR);
 
         //adicionar identificador para no identificador
-        parametros_formais();
+        parametros_formais(func->listaParametros);
         //adicionar lista de parametros
         consome(FECHA_PAR);
         consome(PONTO_VIRGULA);
@@ -307,7 +336,7 @@ int declaracao_de_funcao(){
             ErroSintaticoComposto(atomos);
         break;
         }
-        declaracao_de_variaveis(CAT_VARIAVEL_LOCAL, func);
+        declaracao_de_variaveis(CAT_VARIAVEL_LOCAL, func->listaVariaveis);
         id_var->conjunto_atributos.func = func;
         adiciona_atomo_lista_hash(id_var);
 
@@ -324,7 +353,7 @@ int declaracao_de_funcao(){
     return 0;
 }
 
-void declaracao_de_variaveis(TAtomo localORglobal, funcao *funcOrigin){
+void declaracao_de_variaveis(TAtomo localORglobal, TListaTabSimbolos *lista){
     if(consomeSemErro(VARIAVEIS)){
         do {
             TNoIdentificador *id_var = novo_TNoIdentificador();
@@ -340,10 +369,13 @@ void declaracao_de_variaveis(TAtomo localORglobal, funcao *funcOrigin){
             id_var->conjunto_atributos.var = var;
 
             consome(PONTO_VIRGULA);
-            if (funcOrigin == NULL)
+            if (lista == NULL){
                 adiciona_atomo_lista_hash(id_var);
-            else
-                adiciona_atomo_lista_atomos(funcOrigin->listaVariaveis, id_var);
+            }else {
+                adiciona_atomo_lista_atomos(lista, id_var);
+
+            }
+
         }while(lookahead.atomo == ID);
     }
 }

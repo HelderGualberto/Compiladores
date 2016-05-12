@@ -23,7 +23,8 @@ int hashpjw( char * s )
      p = s;
 
      int x ;
-    for (x = 0; x < strlen(s); x++){
+     int z = strlen(s);
+    for (x = 0; x <z; x++){
         h = ( h << 4 ) + (*p);
         if ( (g = h&0xf0000000) ){
             h = h ^ ( g >> 24 );
@@ -86,8 +87,7 @@ void imprime_tabela_simbolos(){
 }
 void imprime_lista_simbolos(TListaTabSimbolos *tabSimbolos){
     TNoTabSimbolos *atual = tabSimbolos->cabeca;
-    procedimento *proc;
-    funcao *func;
+
     while(atual != NULL){
     switch (atual->NoIdentificador->tipo_atributo){
         case(CAT_VARIAVEL_GLOBAL):
@@ -101,7 +101,11 @@ void imprime_lista_simbolos(TListaTabSimbolos *tabSimbolos){
             }
             break;
         case(CAT_PROCEDIMENTO):
-
+            if (atual->NoIdentificador->identificador != NULL){
+                printf("Procedimento %s\n", atual->NoIdentificador->identificador);
+                imprime_lista_simbolos(atual->NoIdentificador->conjunto_atributos.procedimento->listaParametros);
+                imprime_lista_simbolos(atual->NoIdentificador->conjunto_atributos.procedimento->listaVariaveis);
+            }
             break;
         case(CAT_FUNCAO):
             if (atual->NoIdentificador->identificador != NULL){
@@ -112,6 +116,13 @@ void imprime_lista_simbolos(TListaTabSimbolos *tabSimbolos){
             }
             break;
         case(CAT_PARAMETRO):
+            printf("--Parametro %s - Tipo %s", atual->NoIdentificador->identificador, msg_atomo[atual->NoIdentificador->conjunto_atributos.par->tipo_parametro]);
+            if (atual->NoIdentificador->conjunto_atributos.par->passagem == REF){
+                printf(" (referencia)\n");
+            }
+            else {
+                printf("\n");
+            }
             break;
     }
     atual = atual->prox;
@@ -127,15 +138,20 @@ funcao *nova_funcao(){
     return novafunc;
 }
 variavel *nova_variavel(){
-    return  calloc(1, sizeof(variavel));
+    variavel *var = malloc(sizeof(variavel));
+    return  var;
 
 }
 parametro *novo_parametro(){
+
     return  calloc(1, sizeof(parametro));
 
 }
 procedimento *novo_procedimento(){
-    return  calloc(1, sizeof(procedimento));
+    procedimento *proc = malloc(sizeof(procedimento));
+    proc->listaParametros->cabeca = NULL;
+    proc->listaVariaveis->cabeca = NULL;
+    return proc;
 
 }
 TNoIdentificador *novo_TNoIdentificador(){

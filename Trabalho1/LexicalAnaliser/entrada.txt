@@ -28,7 +28,7 @@ x:=10,8; senao
 x:=15,2; fim se
 enquanto a = c faca
 x:= -7+5;
-1fim enquanto
+fim enquanto
 
 FIM funcao
 
@@ -42,7 +42,7 @@ aksjdfhhhsihdhddh
 *)
 
 
-funcao aqd (ref sad {1234567890ALGORITMO} inteiro; z real);inteiro
+funcao aqd (ref sad inteiro; z real);inteiro
 
 variaveis 
 

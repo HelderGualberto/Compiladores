@@ -3,7 +3,6 @@
 #define PRIME_NUMBER 211
 #include "analex.h"
 
-
 struct _no_tabsimbolos;
 struct _lista_tabsimbolos;
 typedef enum{
