@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1464532556 source:c:\users\helder\documents\compiladores\turingmachine\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
+1466034583 source:c:\users\helder\documents\compiladores\trabalho_maquina_turing\turingmachine\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+
